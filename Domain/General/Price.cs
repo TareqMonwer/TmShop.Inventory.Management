@@ -15,5 +15,14 @@ namespace TmShop.Inventory.Management.Domain.General
         {
             return $"{Currency}{ItemPrice}";
         }
+
+        public Price()
+        {
+        }
+
+        public Price(double price, Currency currency) {
+            ItemPrice = price ;
+            Currency = currency;
+        }
     }
 }

@@ -68,7 +68,10 @@ namespace TmShop.Inventory.Management.Domain.ProductManagement
             Price = price;
             UnitType = unitType;
 
-            UpdateLowStock();
+            if (AmountInStock < StockTreshold)
+            {
+                IsBelowStockTreshold = true;
+            }
         }
 
         public void UseProduct(int items)
@@ -106,7 +109,7 @@ namespace TmShop.Inventory.Management.Domain.ProductManagement
             {
                 AmountInStock = maxItemsInStock;
 
-                Log($"{CreateSimpleProductRepresentation} stock overflow. " +
+                Log($"{CreateSimpleProductRepresentation()} stock overflow. " +
                     $"{newStock - AmountInStock} item(s) ordered that couldn't be stored.");
             }
 

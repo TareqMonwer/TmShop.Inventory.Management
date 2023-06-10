@@ -8,6 +8,16 @@ namespace TmShop.Inventory.Management.Domain.ProductManagement
 {
     public partial class Product
     {
+        public static int StockTreshold = 5;
+
+        public static void ChangeStockTreshold(int newStockTreshold)
+        {
+            if (newStockTreshold > 0)
+            {
+                StockTreshold = newStockTreshold;
+            }
+        }
+
         private void DecreaseStock(int items, string reason)
         {
             if (items <= AmountInStock)
@@ -34,9 +44,9 @@ namespace TmShop.Inventory.Management.Domain.ProductManagement
             Console.WriteLine(message);
         }
 
-        private void UpdateLowStock()
+        public void UpdateLowStock()
         {
-            if (AmountInStock < 10)
+            if (AmountInStock < StockTreshold)
             {
                 IsBelowStockTreshold = true;
             }

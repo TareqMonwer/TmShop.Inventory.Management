@@ -23,5 +23,23 @@ namespace TmShop.Inventory.Management.Domain.OrderManagement
 
             OrderItems = new List<OrderItem>();
         }
+
+        public string ShowOrderDetails()
+        {
+            StringBuilder orderDetails = new StringBuilder();
+
+            orderDetails.AppendLine($"Order ID: {Id}");
+            orderDetails.AppendLine($"Order fulfilment date: {OrderFulfilmentDate.ToShortTimeString()}");
+
+            if (OrderItems != null)
+            {
+                foreach (OrderItem item in OrderItems)
+                {
+                    orderDetails.AppendLine();
+                }
+            }
+
+            return orderDetails.ToString();
+        }
     }
 }
